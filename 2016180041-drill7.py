@@ -2,6 +2,7 @@ from pico2d import *
 
 import random
 
+
 class Grass:
     def __init__(self):
         self.image = load_image("grass.png")
@@ -24,6 +25,32 @@ class Boy:
         self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
 
 
+class Sball:
+    def __init__(self):
+        self.x, self.y = random.randint(100, 700), 599
+        self.frame = random.randint(0, 7)
+        self.image = load_image('ball21x21.png')
+
+    def update(self):
+        self.y -= 5
+
+    def draw(self):
+        self.image.clip_draw(0, 0, 100, 100, self.x, self.y)
+
+
+class Bball:
+    def __init__(self):
+        self.x, self.y = random.randint(100, 700), 599
+        self.frame = random.randint(0, 7)
+        self.image = load_image('ball41x41.png')
+
+    def update(self):
+        self.y -= 5
+
+    def draw(self):
+        self.image.clip_draw(0, 0, 100, 100, self.x, self.y)
+    
+
 def handle_events():
     global running
     events = get_events()
@@ -33,7 +60,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
-# initialization code
+
 open_canvas()
 
 boy = Boy()
